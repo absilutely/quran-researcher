@@ -1,0 +1,168 @@
+// Prisma schema for Quran Researcher
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+// User model (for future auth integration)
+model User {
+  id            String    @id @default(cuid())
+  email         String?   @unique
+  name          String?
+  image         String?
+  createdAt     DateTime  @default(now())
+  updatedAt     DateTime  @updatedAt
+  
+  // Relations
+  researches    Research[]
+  savedVerses   SavedVerse[]
+  comments      Comment[]
+  likes         Like[]
+  highlights    Highlight[]
+}
+
+// Research/Report model
+model Research {
+  id          String   @id @default(cuid())
+  title       String
+  query       String   @db.Text
+  content     String   @db.Text  // JSON or Markdown content
+  summary     String?  @db.Text
+  tags        String[] // Array of tags
+  isPublic    Boolean  @default(false)
+  viewCount   Int      @default(0)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+  
+  // Relations
+  author      User     @relation(fields: [authorId], references: [id], onDelete: Cascade)
+  authorId    String
+  comments    Comment[]
+  likes       Like[]
+  highlights  Highlight[]
+  verses      ResearchVerse[]
+  
+  @@index([authorId])
+  @@index([createdAt])
+  @@index([isPublic])
+}
+
+// Saved verses for user's collection
+model SavedVerse {
+  id          String   @id @default(cuid())
+  reference   String   // e.g., "2:255"
+  surah       Int
+  ayah        Int
+  arabic      String   @db.Text
+  translation String?  @db.Text
+  notes       String?  @db.Text
+  createdAt   DateTime @default(now())
+  
+  // Relations
+  user        User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  userId      String
+  
+  @@unique([userId, reference])
+  @@index([userId])
+}
+
+// Verses referenced in a research
+model ResearchVerse {
+  id          String   @id @default(cuid())
+  reference   String
+  surah       Int
+  ayah        Int
+  arabic      String   @db.Text
+  translation String?  @db.Text
+  notes       String?  @db.Text
+  order       Int      @default(0)
+  
+  // Relations
+  research    Research @relation(fields: [researchId], references: [id], onDelete: Cascade)
+  researchId  String
+  
+  @@index([researchId])
+}
+
+// Comments on research
+model Comment {
+  id        String   @id @default(cuid())
+  content   String   @db.Text
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  
+  // Relations
+  author    User     @relation(fields: [authorId], references: [id], onDelete: Cascade)
+  authorId  String
+  research  Research @relation(fields: [researchId], references: [id], onDelete: Cascade)
+  researchId String
+  
+  // Self-referential for replies
+  parent    Comment?  @relation("CommentReplies", fields: [parentId], references: [id], onDelete: Cascade)
+  parentId  String?
+  replies   Comment[] @relation("CommentReplies")
+  
+  likes     Like[]
+  
+  @@index([researchId])
+  @@index([authorId])
+  @@index([parentId])
+}
+
+// Likes for research and comments
+model Like {
+  id        String   @id @default(cuid())
+  createdAt DateTime @default(now())
+  
+  // Relations
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  userId    String
+  
+  // Polymorphic - either research or comment
+  research   Research? @relation(fields: [researchId], references: [id], onDelete: Cascade)
+  researchId String?
+  comment    Comment?  @relation(fields: [commentId], references: [id], onDelete: Cascade)
+  commentId  String?
+  
+  @@unique([userId, researchId])
+  @@unique([userId, commentId])
+  @@index([researchId])
+  @@index([commentId])
+}
+
+// Highlights on research content
+model Highlight {
+  id          String   @id @default(cuid())
+  text        String   @db.Text
+  color       String   @default("yellow")
+  startOffset Int
+  endOffset   Int
+  sectionId   String   // Which section of the research
+  note        String?  @db.Text
+  createdAt   DateTime @default(now())
+  
+  // Relations
+  user       User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  userId     String
+  research   Research @relation(fields: [researchId], references: [id], onDelete: Cascade)
+  researchId String
+  
+  @@index([researchId])
+  @@index([userId])
+}
+
+// Session storage for AI memory
+model Session {
+  id        String   @id @default(cuid())
+  data      String   @db.Text // JSON serialized session data
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  expiresAt DateTime
+  
+  @@index([expiresAt])
+}

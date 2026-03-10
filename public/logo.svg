@@ -1,0 +1,50 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" fill="none">
+  <defs>
+    <linearGradient id="emeraldGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#047857"/>
+      <stop offset="100%" style="stop-color:#065F46"/>
+    </linearGradient>
+    <linearGradient id="goldGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#F59E0B"/>
+      <stop offset="100%" style="stop-color:#D97706"/>
+    </linearGradient>
+  </defs>
+  
+  <!-- Background Circle -->
+  <circle cx="50" cy="50" r="48" fill="url(#emeraldGradient)"/>
+  
+  <!-- Inner decorative ring -->
+  <circle cx="50" cy="50" r="42" fill="none" stroke="url(#goldGradient)" stroke-width="1.5" opacity="0.6"/>
+  
+  <!-- Open Book Shape -->
+  <g transform="translate(50, 50)">
+    <!-- Left page -->
+    <path d="M-5 -15 Q-20 -12 -25 0 Q-20 12 -5 15 L-5 -15" fill="white" opacity="0.95"/>
+    <!-- Right page -->
+    <path d="M5 -15 Q20 -12 25 0 Q20 12 5 15 L5 -15" fill="white" opacity="0.95"/>
+    <!-- Book spine -->
+    <rect x="-5" y="-15" width="10" height="30" fill="white" opacity="0.9"/>
+    
+    <!-- Arabic-inspired decorative lines on pages -->
+    <line x1="-20" y1="-8" x2="-8" y2="-8" stroke="#047857" stroke-width="1.5" stroke-linecap="round"/>
+    <line x1="-18" y1="-3" x2="-8" y2="-3" stroke="#047857" stroke-width="1.5" stroke-linecap="round"/>
+    <line x1="-20" y1="2" x2="-8" y2="2" stroke="#047857" stroke-width="1.5" stroke-linecap="round"/>
+    <line x1="-17" y1="7" x2="-8" y2="7" stroke="#047857" stroke-width="1.5" stroke-linecap="round"/>
+    
+    <line x1="8" y1="-8" x2="20" y2="-8" stroke="#047857" stroke-width="1.5" stroke-linecap="round"/>
+    <line x1="8" y1="-3" x2="18" y2="-3" stroke="#047857" stroke-width="1.5" stroke-linecap="round"/>
+    <line x1="8" y1="2" x2="20" y2="2" stroke="#047857" stroke-width="1.5" stroke-linecap="round"/>
+    <line x1="8" y1="7" x2="17" y2="7" stroke="#047857" stroke-width="1.5" stroke-linecap="round"/>
+  </g>
+  
+  <!-- Magnifying glass / Research symbol -->
+  <g transform="translate(68, 68)">
+    <circle cx="0" cy="0" r="10" fill="none" stroke="url(#goldGradient)" stroke-width="3"/>
+    <line x1="7" y1="7" x2="14" y2="14" stroke="url(#goldGradient)" stroke-width="3" stroke-linecap="round"/>
+  </g>
+  
+  <!-- Decorative star/Islamic pattern element -->
+  <g transform="translate(50, 22)">
+    <polygon points="0,-6 1.5,-2 6,-2 2.5,1 4,5 0,2.5 -4,5 -2.5,1 -6,-2 -1.5,-2" fill="url(#goldGradient)" opacity="0.9"/>
+  </g>
+</svg>
