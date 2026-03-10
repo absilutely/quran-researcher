@@ -8,7 +8,7 @@ export async function POST(req: Request) {
 
     const result = await createResearchStream(messages, sessionId);
 
-    return result.toDataStreamResponse();
+    return result.toTextStreamResponse();
   } catch (error) {
     console.error('Chat API error:', error);
     return new Response(

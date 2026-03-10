@@ -86,12 +86,13 @@ export function Navbar() {
           </Button>
 
           {/* Mobile Menu */}
-          <Sheet>
-            <SheetTrigger asChild className="md:hidden">
-              <Button variant="ghost" size="icon">
-                <Menu className="w-5 h-5" />
-              </Button>
-            </SheetTrigger>
+          <div className="md:hidden">
+            <Sheet>
+              <SheetTrigger>
+                <Button variant="ghost" size="icon">
+                  <Menu className="w-5 h-5" />
+                </Button>
+              </SheetTrigger>
             <SheetContent side="right" className="w-[280px]">
               <div className="flex flex-col gap-4 mt-8">
                 {navItems.map((item) => {
@@ -107,7 +108,8 @@ export function Navbar() {
                 })}
               </div>
             </SheetContent>
-          </Sheet>
+            </Sheet>
+          </div>
         </div>
       </div>
     </header>
