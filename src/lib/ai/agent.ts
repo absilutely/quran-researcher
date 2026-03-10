@@ -1,4 +1,4 @@
-import { anthropic } from '@ai-sdk/anthropic';
+import { openai } from '@ai-sdk/openai';
 import { streamText, generateText } from 'ai';
 import { QURAN_RESEARCHER_SYSTEM_PROMPT, classifyQuery } from './skills/quran-researcher';
 
@@ -44,7 +44,7 @@ export async function createResearchStream(
   const systemPrompt = QURAN_RESEARCHER_SYSTEM_PROMPT + memoryContext;
 
   return streamText({
-    model: anthropic('claude-sonnet-4-20250514'),
+    model: openai('gpt-4o'),
     system: systemPrompt,
     messages,
   });
@@ -58,7 +58,7 @@ export async function generateResearchReport(
   const memory = getMemory(sessionId);
 
   const result = await generateText({
-    model: anthropic('claude-sonnet-4-20250514'),
+    model: openai('gpt-4o'),
     system: QURAN_RESEARCHER_SYSTEM_PROMPT,
     prompt: `Research Query Type: ${queryType}\n\nUser Query: ${query}\n\nProvide a comprehensive research report.`,
   });
