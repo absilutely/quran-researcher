@@ -1,0 +1,237 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+@import "shadcn/tailwind.css";
+
+@custom-variant dark (&:is(.dark *));
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --font-sans: var(--font-sans);
+  --font-mono: var(--font-geist-mono);
+  --font-arabic: 'Amiri', 'Noto Naskh Arabic', serif;
+  --color-sidebar-ring: var(--sidebar-ring);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar: var(--sidebar);
+  --color-chart-5: var(--chart-5);
+  --color-chart-4: var(--chart-4);
+  --color-chart-3: var(--chart-3);
+  --color-chart-2: var(--chart-2);
+  --color-chart-1: var(--chart-1);
+  --color-ring: var(--ring);
+  --color-input: var(--input);
+  --color-border: var(--border);
+  --color-destructive: var(--destructive);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-accent: var(--accent);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-muted: var(--muted);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-secondary: var(--secondary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-primary: var(--primary);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-popover: var(--popover);
+  --color-card-foreground: var(--card-foreground);
+  --color-card: var(--card);
+  --radius-sm: calc(var(--radius) * 0.6);
+  --radius-md: calc(var(--radius) * 0.8);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) * 1.4);
+  --radius-2xl: calc(var(--radius) * 1.8);
+  --radius-3xl: calc(var(--radius) * 2.2);
+  --radius-4xl: calc(var(--radius) * 2.6);
+}
+
+:root {
+  /* Quran Researcher Theme - Emerald & Gold */
+  --background: oklch(0.99 0.002 110);
+  --foreground: oklch(0.15 0.02 150);
+  --card: oklch(1 0 0);
+  --card-foreground: oklch(0.15 0.02 150);
+  --popover: oklch(1 0 0);
+  --popover-foreground: oklch(0.15 0.02 150);
+  
+  /* Primary - Deep Emerald */
+  --primary: oklch(0.45 0.12 160);
+  --primary-foreground: oklch(0.99 0 0);
+  
+  /* Secondary - Warm Gold */
+  --secondary: oklch(0.92 0.04 85);
+  --secondary-foreground: oklch(0.35 0.08 60);
+  
+  --muted: oklch(0.96 0.01 110);
+  --muted-foreground: oklch(0.45 0.02 150);
+  --accent: oklch(0.94 0.03 85);
+  --accent-foreground: oklch(0.25 0.06 60);
+  --destructive: oklch(0.58 0.22 27);
+  --border: oklch(0.90 0.02 110);
+  --input: oklch(0.92 0.01 110);
+  --ring: oklch(0.50 0.12 160);
+  
+  /* Charts - Emerald gradient */
+  --chart-1: oklch(0.65 0.15 160);
+  --chart-2: oklch(0.55 0.12 160);
+  --chart-3: oklch(0.45 0.10 160);
+  --chart-4: oklch(0.70 0.10 85);
+  --chart-5: oklch(0.60 0.12 85);
+  
+  --radius: 0.625rem;
+  
+  /* Sidebar */
+  --sidebar: oklch(0.98 0.01 110);
+  --sidebar-foreground: oklch(0.15 0.02 150);
+  --sidebar-primary: oklch(0.45 0.12 160);
+  --sidebar-primary-foreground: oklch(0.99 0 0);
+  --sidebar-accent: oklch(0.94 0.03 160);
+  --sidebar-accent-foreground: oklch(0.25 0.08 160);
+  --sidebar-border: oklch(0.90 0.02 110);
+  --sidebar-ring: oklch(0.50 0.12 160);
+}
+
+.dark {
+  --background: oklch(0.12 0.02 150);
+  --foreground: oklch(0.95 0.01 110);
+  --card: oklch(0.16 0.02 150);
+  --card-foreground: oklch(0.95 0.01 110);
+  --popover: oklch(0.16 0.02 150);
+  --popover-foreground: oklch(0.95 0.01 110);
+  
+  /* Primary - Lighter Emerald for dark mode */
+  --primary: oklch(0.65 0.15 160);
+  --primary-foreground: oklch(0.12 0.02 150);
+  
+  /* Secondary - Muted Gold */
+  --secondary: oklch(0.25 0.04 85);
+  --secondary-foreground: oklch(0.90 0.04 85);
+  
+  --muted: oklch(0.22 0.02 150);
+  --muted-foreground: oklch(0.65 0.02 110);
+  --accent: oklch(0.28 0.04 160);
+  --accent-foreground: oklch(0.90 0.02 110);
+  --destructive: oklch(0.65 0.20 25);
+  --border: oklch(0.25 0.02 150);
+  --input: oklch(0.22 0.02 150);
+  --ring: oklch(0.60 0.12 160);
+  
+  --chart-1: oklch(0.70 0.15 160);
+  --chart-2: oklch(0.60 0.12 160);
+  --chart-3: oklch(0.50 0.10 160);
+  --chart-4: oklch(0.75 0.10 85);
+  --chart-5: oklch(0.65 0.12 85);
+  
+  --sidebar: oklch(0.14 0.02 150);
+  --sidebar-foreground: oklch(0.95 0.01 110);
+  --sidebar-primary: oklch(0.65 0.15 160);
+  --sidebar-primary-foreground: oklch(0.12 0.02 150);
+  --sidebar-accent: oklch(0.22 0.03 160);
+  --sidebar-accent-foreground: oklch(0.90 0.02 110);
+  --sidebar-border: oklch(0.25 0.02 150);
+  --sidebar-ring: oklch(0.60 0.12 160);
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+  body {
+    @apply bg-background text-foreground;
+  }
+  html {
+    @apply font-sans;
+  }
+}
+
+/* Arabic Typography */
+.font-arabic {
+  font-family: 'Amiri', 'Noto Naskh Arabic', 'Traditional Arabic', serif;
+  line-height: 2;
+}
+
+/* Arabic verse styling */
+.verse-arabic {
+  font-family: 'Amiri', serif;
+  font-size: 1.5rem;
+  line-height: 2.2;
+  direction: rtl;
+  text-align: right;
+}
+
+/* Morphology highlighting */
+.highlight-root {
+  background-color: oklch(0.95 0.08 85);
+  padding: 0.125rem 0.25rem;
+  border-radius: 0.25rem;
+}
+
+.highlight-verb {
+  background-color: oklch(0.92 0.06 250);
+  padding: 0.125rem 0.25rem;
+  border-radius: 0.25rem;
+}
+
+.highlight-noun {
+  background-color: oklch(0.92 0.08 160);
+  padding: 0.125rem 0.25rem;
+  border-radius: 0.25rem;
+}
+
+.highlight-particle {
+  background-color: oklch(0.94 0.06 300);
+  padding: 0.125rem 0.25rem;
+  border-radius: 0.25rem;
+}
+
+/* Dark mode highlights */
+.dark .highlight-root {
+  background-color: oklch(0.35 0.08 85);
+}
+
+.dark .highlight-verb {
+  background-color: oklch(0.30 0.06 250);
+}
+
+.dark .highlight-noun {
+  background-color: oklch(0.30 0.08 160);
+}
+
+.dark .highlight-particle {
+  background-color: oklch(0.32 0.06 300);
+}
+
+/* Smooth scrolling */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: oklch(0.80 0.02 110);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: oklch(0.70 0.02 110);
+}
+
+.dark ::-webkit-scrollbar-thumb {
+  background: oklch(0.30 0.02 150);
+}
+
+.dark ::-webkit-scrollbar-thumb:hover {
+  background: oklch(0.40 0.02 150);
+}
